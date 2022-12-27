@@ -47,7 +47,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="@{viewModel.overview}"
-                android:textColor="@color/black"
+                android:textColor="@color/movie_overview_color"
                 tools:text="Description Description Description Description Description Description Description Description Description Description Description " />
         </LinearLayout>
     </ScrollView>
