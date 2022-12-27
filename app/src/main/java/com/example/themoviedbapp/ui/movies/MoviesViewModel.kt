@@ -10,6 +10,7 @@ import com.example.themoviedbapp.models.entity.Movie
 import com.example.themoviedbapp.tools.livedata.SingleLiveEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.distinctUntilChanged
 import javax.inject.Inject
 
 @HiltViewModel
@@ -21,7 +22,7 @@ class MoviesViewModel @Inject constructor(
     val startMovieDetailsScreenCommand = SingleLiveEvent<Int>()
 
     fun getMovies(): Flow<PagingData<Movie>> {
-        return moviesRepository.getMovies().cachedIn(viewModelScope)
+        return moviesRepository.getMovies().distinctUntilChanged().cachedIn(viewModelScope)
     }
 
     fun getBasePosterPath() = basePosterPath
