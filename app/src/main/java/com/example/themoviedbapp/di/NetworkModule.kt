@@ -1,10 +1,6 @@
 package com.example.themoviedbapp.di
 
-import com.example.themoviedbapp.BuildConfig
-import com.example.themoviedbapp.data.remote.Api
-import com.example.themoviedbapp.data.remote.BASE_POSTER_PATH
-import com.example.themoviedbapp.data.remote.THE_MOVIE_DB_URL
-import com.example.themoviedbapp.data.remote.TIMEOUT
+import com.example.themoviedbapp.data.remote.*
 import com.example.themoviedbapp.data.remote.adapter.ApiResponseAdapterFactory
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -38,7 +34,13 @@ class NetworkModule {
     }
 
     @Provides
-    fun provideOkHttpClient(): OkHttpClient {
+    @ApiKey
+    fun provideApiKey(): String {
+        return THE_MOVIE_DB_API_KEY
+    }
+
+    @Provides
+    fun provideOkHttpClient(@ApiKey apiKey: String): OkHttpClient {
         return OkHttpClient.Builder().apply {
             connectTimeout(TIMEOUT, TimeUnit.MILLISECONDS)
             readTimeout(TIMEOUT, TimeUnit.MILLISECONDS)
@@ -46,7 +48,7 @@ class NetworkModule {
             addInterceptor { chain ->
                 val request = chain.request()
                 val newUrl = request.url.newBuilder()
-                    .addQueryParameter("api_key", BuildConfig.TMDB_API_KEY)
+                    .addQueryParameter("api_key", apiKey)
                     .build()
 
                 val newRequest = request.newBuilder()
@@ -93,4 +95,8 @@ class NetworkModule {
     @Qualifier
     @Retention(AnnotationRetention.BINARY)
     annotation class BasePosterPath
+
+    @Qualifier
+    @Retention(AnnotationRetention.BINARY)
+    annotation class ApiKey
 }
