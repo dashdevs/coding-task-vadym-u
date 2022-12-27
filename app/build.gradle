@@ -16,7 +16,6 @@ android {
         targetSdk 33
         versionCode 1
         versionName "1.0"
-        buildConfigField "String", "TMDB_API_KEY", "\"${getProperty("local.properties", "tmdb.api.key")}\""
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -87,19 +86,4 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
-}
-
-def getProperty(String fileName, String propertyName) {
-    def propertiesFile = rootProject.file(fileName)
-    if (propertiesFile.exists()) {
-        def properties = new Properties()
-        properties.load(new FileInputStream(propertiesFile))
-        if (properties[propertyName] != null) {
-            return properties[propertyName]
-        } else {
-            print("No such property " + propertyName + " in file " + fileName)
-        }
-    } else {
-        print(fileName + " does not exist")
-    }
 }
