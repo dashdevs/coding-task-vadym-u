@@ -30,7 +30,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="@{viewModel.title}"
-                android:textColor="@color/black"
+                android:textColor="@color/movie_title_color"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 tools:text="Home Alone" />

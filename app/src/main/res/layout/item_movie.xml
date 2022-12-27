@@ -34,7 +34,7 @@
             android:layout_marginStart="8dp"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:textColor="@color/black"
+            android:textColor="@color/movie_title_color"
             app:layout_constraintStart_toEndOf="@+id/posterImage"
             app:layout_constraintTop_toTopOf="@+id/posterImage"
             app:layout_constraintEnd_toEndOf="parent"
