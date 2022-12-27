@@ -24,7 +24,7 @@ class MoviesAdapter(
                 oldItem.id == newItem.id
 
             override fun areContentsTheSame(oldItem: Movie, newItem: Movie): Boolean =
-                oldItem.id == newItem.id // todo add valid compare
+                oldItem == newItem // todo add valid compare
         }
     }
 

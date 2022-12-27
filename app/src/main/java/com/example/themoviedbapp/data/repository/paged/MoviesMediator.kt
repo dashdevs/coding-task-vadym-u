@@ -83,7 +83,7 @@ class MoviesMediator @Inject constructor(
                             )
                         }
                         movieRemoteKeysDao.addAllMovieRemoteKeys(movieRemoteKeys = keys)
-                        movieDao.addMovies(movies = list)
+                        movieDao.addMovies(movies = list.map { it.toMovie() })
                     }
                 }
             }

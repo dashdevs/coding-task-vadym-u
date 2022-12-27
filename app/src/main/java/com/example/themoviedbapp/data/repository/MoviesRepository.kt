@@ -19,7 +19,7 @@ class MoviesRepository @Inject constructor(
     private val moviesMediator: MoviesMediator,
     @IoDispatcher private val defaultDispatcher: CoroutineDispatcher
 ) {
-    private val pagingConfig = PagingConfig(pageSize = 30)
+    private val pagingConfig = PagingConfig(pageSize = 20, prefetchDistance = 0)
 
     fun getMovies(): Flow<PagingData<Movie>> {
         val pagingSourceFactory: () -> PagingSource<Int, Movie> = { movieDao.getMoviesPaged() }
